@@ -1,0 +1,11 @@
+# Welcome to Electricity Generation Mix Calculator V1.1 CHANGELOG
+
+## V1.00
+- Created the initial program with basic features
+
+## V1.10
+- Adding documentation
+- Homogeneous lingustic features (English)
+- Adding update features
+- Adding remove all features on option 3
+- Fixing data structures
