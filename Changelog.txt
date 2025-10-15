@@ -9,3 +9,8 @@
 - Adding update features
 - Adding remove all features on option 3
 - Fixing data structures
+
+## V1.20
+- Updating documentation
+- Adding new variable for intermittent energy
+- Adding features for tracking intermittent energy use and suggestions

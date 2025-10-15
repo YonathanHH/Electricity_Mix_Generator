@@ -1,4 +1,4 @@
-# Electricity Generation Mix Calculator V1.1
+# Electricity Generation Mix Calculator V1.2
 
 A Python-based application designed to track, analyze, and visualize electricity generation data across different regions and energy sources.
 
@@ -33,6 +33,7 @@ The **Electricity Generation Mix Calculator** is a comprehensive tool that enabl
    - Track percentage breakdown by energy source type
    - Calculate green energy percentage for sustainability metrics
    - Regional energy mix visualization
+   - Energy intermittency analysis
 
 3. **User-Friendly Interface**
    - Interactive menu-driven system
@@ -52,14 +53,15 @@ The application manages electricity generation data with the following attribute
 | Energy Generated | Amount of electricity produced | Float (MWh) |
 | Green Energy | Environmental classification | Boolean |
 | Percentage | Share of total generation | Float (%) |
+| Intermittent Energy | Stable energy classification | Boolean |
 
 ### Supported Energy Types
 - **Renewable Sources** 
   - Geothermal
   - Biomass  
   - Hydro
-  - Wind
-  - Solar
+  - Wind (Intermittent)
+  - Solar (Intermittent)
   - Nuclear
 
 - **Conventional Sources**
@@ -85,7 +87,8 @@ python main.py
 4. **Update Data**: Updating existing data
 5. **Source Analysis**: View percentage breakdown by energy type
 6. **Green Energy Metrics**: Calculate renewable energy percentage
-7. **Exit**: Close the application
+7. **Intermittent Energy Metrics**: Calculate intermittent energy percentage
+8. **Exit**: Close the application
 
 ### Adding New Data
 The application will prompt for:
@@ -95,6 +98,13 @@ The application will prompt for:
 - **Generation Amount**: How much energy is produced (MWh)?
 
 *Green energy classification and percentage calculations are automated.*
+
+### Updating data
+- **Location**: Input new location data - blank for None
+- **New Generation**: Input new production rate
+
+### Deleting data
+Input the index of data!
 
 ## Sustainability Focus
 
