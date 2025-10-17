@@ -1,4 +1,4 @@
-# Electricity Generation Mix Calculator V1.2
+![Electricity Mix Generator Logo_V2](https://drive.google.com/file/d/1mT0KBoB9rmvLQeightQkmCa984zUJ-NJ/view?usp=sharing)
 
 A Python-based application designed to track, analyze, and visualize electricity generation data across different regions and energy sources.
 
