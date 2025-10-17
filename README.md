@@ -1,4 +1,4 @@
-![Electricity Mix Generator Logo_V2](https://drive.google.com/file/d/1mT0KBoB9rmvLQeightQkmCa984zUJ-NJ/view?usp=sharing)
+![Electricity Mix Generator Logo_V2](https://scontent.fcgk19-1.fna.fbcdn.net/v/t1.15752-9/562990859_2337068153430538_3085069661489251696_n.png?stp=dst-png_s2048x2048&_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_ohc=e3pP3Fli-zwQ7kNvwHbnWS0&_nc_oc=AdkXaiA5q_zkAl_DYJZhXp9SkSjzQDGhPK-3o9ln4gb3GGblUbUzjFdiWEuGvA6WCTA&_nc_zt=23&_nc_ht=scontent.fcgk19-1.fna&oh=03_Q7cD3gF7OGRumXHE1nNOxJLFSSfXgxjpiykyWTyjgCpwsS43Mw&oe=69197430)
 
 A Python-based application designed to track, analyze, and visualize electricity generation data across different regions and energy sources.
 
