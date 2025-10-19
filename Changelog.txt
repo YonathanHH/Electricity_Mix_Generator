@@ -14,3 +14,7 @@
 - Updating documentation
 - Adding new variable for intermittent energy
 - Adding features for tracking intermittent energy use and suggestions
+
+## V1.2.1
+- Minor bug fix - No crashing when key error or input type
+- Fixing indexing sequence when removing data
