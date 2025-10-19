@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Electricity Generation Mix Calculator
 A capstone project for tracking and analyzing electricity generation data
@@ -149,10 +148,14 @@ def add_generation_data():
         return
 
     # Get powerplant name
-    powerplant = input('What is the powerplant name? ')
-    if not powerplant:
-        print('Error: Powerplant name cannot be empty!')
-        return
+    
+    while True:
+        powerplant = input('What is the powerplant name? ')
+        if not powerplant:
+            print('Error: Powerplant name cannot be empty!')
+            continue
+        else:
+            break
 
     # Display energy type options
     print('\nChoose energy type:')
@@ -167,19 +170,30 @@ def add_generation_data():
     # Get energy type selection
     while True:
         pilihan = input(f'Choose an energy type (0-{len(energy_types)-1}): ')
-        energy_index = int(pilihan)
-        if 0 <= energy_index < len(energy_types):
-            energy_type = energy_types[energy_index]
-            break
-        else:
-            print(f'Error: Choose an energy type between 0-{len(energy_types)-1}')
+        if pilihan =='':
+            print('Error: Energy type cannot be empty!')
+            continue
+        if pilihan.isdigit():
+            pilihan_int = int(pilihan)
+            if pilihan_int >= 0 and pilihan_int < len(energy_types):
+                break
+            else:
+                print('Error: Invalid energy type selection!')
+                continue
 
-    # Get energy generation amount, no try-except
     while True:
         energy_str = input('How much energy is generated in MWh? ')
+        if energy_str == '':
+            print('Error: Energy generated cannot be empty!')
+            continue
+        temp_str = energy_str
+        if not temp_str.replace('.', '', 1).isdigit():
+            print('Error: You entered a non-numeric value! Please enter numbers only.')
+            continue
+
         energy_generated = float(energy_str)
         if energy_generated < 0:
-            print('Error: Energy produced cannot be negative!')
+            print('Error: Energy generated cannot be negative!')
             continue
         break
 
@@ -247,7 +261,9 @@ def remove_generation_data():
         print(f'ID {plant['id']}: {plant['powerplant']} ({plant['location']}) - {plant['energy_generated']:.1f} MWh')
 
     remove_input = input('\nChoose an ID to remove (or "all" to remove all data): ')
-
+    if remove_input == '':
+        print('Error: ID cannot be empty!')
+        return
     if remove_input.upper() == 'ALL':
         confirm = input('Confirm the deletion of all data? (y/n): ').lower()
         if confirm == 'y':
@@ -256,7 +272,10 @@ def remove_generation_data():
         else:
             print('Deletion canceled.')
         return
-
+    if not remove_input.isdigit():
+        print('Error: ID must be a number!')
+        return
+    
     target_id = int(remove_input)
     found = False
     for i in range(len(data)):
@@ -266,6 +285,10 @@ def remove_generation_data():
             print(f'Data deleted: {removed_data['powerplant']} ({removed_data['location']})')
             found = True
             break
+    # Reindex all IDs to be sequential starting from 0
+    if found:
+        for idx, plant in enumerate(data, start=0):
+            plant['id'] = idx
 
     if not found:
         print(f'Error: Data with ID {target_id} cannot be found!')
@@ -434,7 +457,6 @@ def track_intermittency_percentage():
     else:
         print(f'WARNING! The use of intermittent energy sources is too high! Build more stable energy sources!')
     
-
 def update_generation_data():
     global data, energy_types, green_energy_sources
     print('\n' + '='*60)
@@ -451,13 +473,20 @@ def update_generation_data():
 
     # Get target ID
     target_id_input = input('\nChoose an ID to update: ')
-    target_id = int(target_id_input)
-
     selected_plant = None
+    if target_id_input == '':
+        print('Error: ID cannot be empty!')
+        return
+    if not target_id_input.isdigit():
+        print('Error: ID must be a number!')
+        return
     for plant in data:
+        target_id = int(target_id_input)
         if plant['id'] == target_id:
             selected_plant = plant
             break
+        else:
+            continue
     if selected_plant is None:
         print('Error: ID not found.')
         return
@@ -469,16 +498,21 @@ def update_generation_data():
 
     # Update generation amount
     energy_generated_in = input(f'New Production: {selected_plant['energy_generated']} - New production (blank for same): ')
-    if energy_generated_in == '':
-        energy_generated = selected_plant['energy_generated']
-    elif energy_generated_in.replace('.', '', 1):
+    while True:
+        if energy_generated_in == '':
+            energy_generated = selected_plant['energy_generated']
+            break
+        vase_energen = energy_generated_in
+        if not vase_energen.replace('.', '', 1).isdigit():
+            print('Error: You entered a non-numeric value! Please enter numbers only.')
+            energy_generated_in = input('Try again - New production (blank for same): ')
+            continue
         energy_generated = float(energy_generated_in)
         if energy_generated < 0:
-            print('Error: Energy cannot be negative.')
-            return
-    else:
-        print('Error: Invalid input!')
-        return
+            print('Error: Energy generated cannot be negative!')
+            energy_generated_in = input('Try again - New production (blank for same): ')
+            continue
+        break
 
     # Update entry
     selected_plant['powerplant'] = powerplant
@@ -490,7 +524,7 @@ def update_generation_data():
 def display_menu():
     #Display the main menu options.
     print('\n' + '='*60)
-    print('ELECTRICITY GENERATION MIX CALCULATOR')
+    print('ELECTRICITY GENERATION MIX CALCULATOR V1.2.1')
     print('='*60)
     print('1. List of electricity generation data')
     print('2. Add electricity generation data')
