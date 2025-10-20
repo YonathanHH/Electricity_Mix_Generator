@@ -117,13 +117,13 @@ This project aligns with global sustainability goals by:
 ## Sample Data Format
 
 ```
-ID | Location | Power Plant    | Energy Type | Generated (MWh) | Green Energy | Percentage
----|----------|----------------|-------------|-----------------|--------------|------------
-0  | Bandung  | Patuha         | Geothermal  | 40              | True         | 21%
-1  | Bandung  | Takuban Perahu | Geothermal  | 40              | True         | 21%
-2  | Cikarang | Cikarang I     | Coal        | 40              | False        | 21%
-3  | Cikarang | Cikarang II    | Gas         | 60              | False        | 32%
-4  | Cirebon  | Kuningan       | Biomass     | 10              | True         | 5%
+ID | Location | Power Plant    | Energy Type | Generated (MWh) | Green Energy | Percentage | Intermittent
+---|----------|----------------|-------------|-----------------|--------------|------------|------------
+0  | Bandung  | Patuha         | Geothermal  | 40              | True         | 21%        | False
+1  | Bandung  | Takuban Perahu | Geothermal  | 40              | True         | 21%        | False
+2  | Cikarang | Cikarang I     | Coal        | 40              | False        | 21%        | False
+3  | Cikarang | Cikarang II    | Gas         | 60              | False        | 32%        | False
+4  | Cirebon  | Kuningan       | Biomass     | 10              | True         | 5%         | False
 ```
 
 ## Limitiation
