@@ -106,6 +106,9 @@ The application will prompt for:
 ### Deleting data
 Input the index of data!
 
+## Program Flowchart
+![Electricity Mix Generator Flowchart](https://scontent.fcgk43-1.fna.fbcdn.net/v/t1.15752-9/562961849_1150585636567106_3940162206865080126_n.jpg?stp=dst-jpg_s2048x2048_tt6&_nc_cat=108&ccb=1-7&_nc_sid=9f807c&_nc_ohc=rZ9V89iVgAQQ7kNvwFXN6QT&_nc_oc=AdmNu8QBtbUqGjvr7B_6yLjsVkQkag_i99b2Kvuj5uFh-0HfYWisyBENneyIeaZYcNp5AHk0weSMRhduBpeyEqgm&_nc_zt=23&_nc_ht=scontent.fcgk43-1.fna&oh=03_Q7cD3gEKf2bUoFGZJbhIywLW_oeZE6nR-k4YTPuEt9pMmOokww&oe=691DB181)
+
 ## Sustainability Focus
 
 This project aligns with global sustainability goals by:
