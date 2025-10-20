@@ -4,7 +4,7 @@ A capstone project for tracking and analyzing electricity generation data
 Author: Yonathan Hary Hutagalung
 Scope: This program tracks electricity generation data across different regions and analyzes the percentage of green energy vs conventional sources.
 """
-# Global variables to store data and energy type information
+# Untuk menyimpan data powerplant
 data = [
     {
         'id': 0,
@@ -57,7 +57,7 @@ data = [
         'intermittent': False
     }
 ]
-# Available energy types and their green energy classification
+# Untuk menyimpan jenis-jenis tipe energy generation
 energy_types = [
     'Geothermal',    # Green
     'Diesel',        # Not Green
@@ -69,17 +69,14 @@ energy_types = [
     'Solar',         # Green
     'Nuclear'        # Green
 ]
-# Set of green energy sources for easy checking
+# Untuk cek apakah energy source adalah green energy atau tidak
 green_energy_sources = {'Geothermal', 'Biomass', 'Hydro', 'Wind', 'Solar', 'Nuclear'}
-#Set intermittent
+# Untuk cek apakah energy source adalah intermittent atau tidak
 intermittent = {'Solar', 'Wind'}
 def calculate_percentages():
-    #Calculate the percentage of total generation for each power plant.
     global data
-    
     if not data:
         return
-    
     total_generation = 0
     for plant in data:
         total_generation += plant['energy_generated']
@@ -92,9 +89,8 @@ def calculate_percentages():
             plant['percentage'] = 0.0
 
 def list_generation_data():
-    # Display all electricity generation data in a formatted table.
     global data
-    
+    #Print title
     print('\n' + '='*140)
     print('ELECTRICITY GENERATION DATA')
     print('='*140)
@@ -102,10 +98,11 @@ def list_generation_data():
     if not data:
         print('No data available.')
         return
+    # Print table header
     print(f'{'ID':<3} {'Location':<12} {'Powerplant':<18} {'Energy Type':<12} {'Generated (MWh)':<16} {'Green Energy':<12} {'Percentage':<10} {'Intermittent':<10}')
     print('-' * 140)
     
-    # Table data
+    # Check green energy and intermittent status
     for plant in data:
         if plant['green_energy']:
             green_status = 'True'
@@ -117,7 +114,7 @@ def list_generation_data():
             intermittent = 'True'
         else:
             intermittent = 'False'
-
+    #print table rows
         print(f'{plant['id']:<3} {plant['location']:<12} {plant['powerplant']:<18} '
               f'{plant['energy_type']:<12} {plant['energy_generated']:<16.1f} '
               f'{green_status:<12} {plant['percentage']:<5.1f}%'
@@ -134,20 +131,19 @@ def list_generation_data():
     print('='*140)
 
 def add_generation_data():
-    #Add new electricity generation data through user input
     global data, energy_types, green_energy_sources
 
     print('\n' + '='*60)
     print('ADD NEW ELECTRICITY GENERATION DATA')
     print('='*60)
 
-    # Get location input
+    # Untuk input powerplant location
     location = input('Where is the powerplant located? ')
     if not location:
         print('Error: Location cannot be empty!')
         return
 
-    # Get powerplant name
+    # Untuk input powerplant name
     
     while True:
         powerplant = input('What is the powerplant name? ')
@@ -157,9 +153,10 @@ def add_generation_data():
         else:
             break
 
-    # Display energy type options
+    # untuk print semua energy type dan green status
     print('\nChoose energy type:')
     for i in range(len(energy_types)):
+        # Untuk cek apakah energy source adalah green energy atau tidak
         energy_type = energy_types[i]
         if energy_type in green_energy_sources:
             green_status = 'Green'
@@ -167,7 +164,7 @@ def add_generation_data():
             green_status = 'Not Green'
         print(f'{i}. {energy_type} ({green_status})')
 
-    # Get energy type selection
+    # Untuk input energy type
     while True:
         pilihan = input(f'Choose an energy type (0-{len(energy_types)-1}): ')
         if pilihan =='':
@@ -180,7 +177,7 @@ def add_generation_data():
             else:
                 print('Error: Invalid energy type selection!')
                 continue
-
+    # input untuk energy generation
     while True:
         energy_str = input('How much energy is generated in MWh? ')
         if energy_str == '':
@@ -202,7 +199,7 @@ def add_generation_data():
     # Determine if it's intermittent
     intermittent_energy = energy_type in intermittent
 
-    # Find new ID (get maximum ID + 1)
+    # menambah index number
     new_id = 0
     if data:
         max_id = 0
@@ -211,7 +208,7 @@ def add_generation_data():
                 max_id = plant['id']
         new_id = max_id + 1
 
-    # Create new data entry
+    # Data entry
     new_data = {
         'id': new_id,
         'location': location,
@@ -223,10 +220,10 @@ def add_generation_data():
         'intermittent': intermittent_energy
     }
 
-    # Add to data list
+    # menambah data baru ke list data
     data.append(new_data)
 
-    # Recalculate percentages
+    # kalkulasi ulang persentase
     calculate_percentages()
 
     print(f'\nData added successfully!')
@@ -244,22 +241,21 @@ def add_generation_data():
         print(f' Intermittent: No')
 
 def remove_generation_data():
-    # Remove electricity generation data by index
     global data
 
     print('\n' + '='*60)
     print('REMOVE ELECTRICITY GENERATION DATA')
     print('='*60)
-
+    # untuk mencheck apakah ada data yang bisa dihapus
     if not data:
         print('Nothing to remove.')
         return
 
-    # Show current data with indices
+    # Untuk menampilkan semua data yang ada
     print('Available data:')
     for plant in data:
         print(f'ID {plant['id']}: {plant['powerplant']} ({plant['location']}) - {plant['energy_generated']:.1f} MWh')
-
+    #Opsi untuk menghapus data berdasarkan ID atau semua data
     remove_input = input('\nChoose an ID to remove (or "all" to remove all data): ')
     if remove_input == '':
         print('Error: ID cannot be empty!')
@@ -294,7 +290,6 @@ def remove_generation_data():
         print(f'Error: Data with ID {target_id} cannot be found!')
 
 def track_percentage_by_source():
-    #Track the percentage of electricity generated by each energy source.
     global data, green_energy_sources
     
     print('\n' + '='*60)
@@ -320,7 +315,7 @@ def track_percentage_by_source():
     print(f'{'Energy Source':<15} {'Generation (MWh)':<18} {'Percentage':<12} {'Type'}')
     print('-' * 60)
     
-    # Sort energy types alphabetically for consistent display
+    # mensort data berdasarkan nama energy source agar rapi
     sorted_sources = []
     for energy_type in source_totals:
         sorted_sources.append(energy_type)
@@ -344,7 +339,6 @@ def track_percentage_by_source():
     print(f'{'Total':<15} {total_generation:<18.1f} {'100.0%':<12}')
 
 def track_green_energy_percentage():
-    #Track the percentage of electricity generated by green energy sources.
     global data
     
     print('\n' + '='*60)
@@ -355,7 +349,7 @@ def track_green_energy_percentage():
         print('Nothing to analyze.')
         return
     
-    # Calculate green vs conventional energy
+    # untuk menghitung total green energy dan conventional energy
     green_generation = 0
     conventional_generation = 0
     green_count = 0
@@ -371,7 +365,7 @@ def track_green_energy_percentage():
     
     total_generation = green_generation + conventional_generation
     
-    # Display results
+    # print hasil
     print(f'{'Category':<20} {'Count':<8} {'Generation (MWh)':<18} {'Percentage'}')
     print('-' * 60)
     
@@ -387,7 +381,7 @@ def track_green_energy_percentage():
     print('-' * 60)
     print(f'{'Total':<20} {len(data):<8} {total_generation:<18.1f} 100.0%')
     
-    # Additional analysis
+    # Analysis tambahan dan advice
     print(f'\nGreen Energy Analysis:')
     print(f'   - {green_percentage:.1f}% of total electricity generation comes from renewable sources')
     print(f'   - {green_count} out of {len(data)} power plants use green energy sources')
@@ -400,7 +394,6 @@ def track_green_energy_percentage():
         print(f'Significant opportunity to increase renewable energy adoption')
 
 def track_intermittency_percentage():
-    #Track the percentage of electricity generated by intermittent energy sources.
     global data
     
     print('\n' + '='*60)
@@ -522,7 +515,6 @@ def update_generation_data():
     print('Data Updated Successfully!')
 
 def display_menu():
-    #Display the main menu options.
     print('\n' + '='*60)
     print('ELECTRICITY GENERATION MIX CALCULATOR V1.2.1')
     print('='*60)
@@ -537,7 +529,6 @@ def display_menu():
     print('='*60)
 
 def run_program():
-    #Main program function that runs the application.
     global data
     
     print('Welcome to Electricity Generation Mix Calculator!')
